@@ -1,10 +1,30 @@
-Python Library/pythonnanorc.egg-info/dependency_links.txt
-Python Library/pythonnanorc.egg-info/PKG-INFO
-Python Library/pythonnanorc.egg-info/requires.txt
-Python Library/pythonnanorc.egg-info/SOURCES.txt
-Python Library/pythonnanorc.egg-info/top_level.txt
-Python Library/pythonnanorc/__pycache__/__init__.cpython-310.pyc
-Python Library/pythonnanorc/__pycache__/client.cpython-310.pyc
-Python Library/build/lib/pythonnanorc/client.py
-Python Library/build/lib/build/lib/pythonnanorc/client.py
-Python Library/build/lib/pythonnanorc/client.py
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python packaging output
+build/
+dist/
+*.egg-info/
+
+# Virtual environments and local configuration
+.venv/
+venv/
+env/
+.env
+
+# Python test and type-checker caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Arduino compiler output
+*.hex
+*.elf
+*.map
+
+# VS Code machine-specific settings
+.vscode/

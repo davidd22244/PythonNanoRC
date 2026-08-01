@@ -17,23 +17,47 @@ The dependency can also be installed directly:
 pip install pyserial
 ```
 
-Upload `Arduino Code/Arduino Code.ino` to the board first. Replace `COM3` in the
-examples with the port shown by Arduino IDE under **Tools > Port**.
+Upload `Arduino Code/Arduino Code.ino` to the board first. Replace `COM6` in
+the examples with the port shown by Arduino IDE under **Tools > Port**.
 
-## Basic Python Usage
+## Quick Start
 
-The `NanoRC` context manager opens the serial connection and closes it when
-the block ends:
+Open the board once with `NanoRC.Init()`, then run commands anywhere in your
+Python program:
 
 ```python
 from pythonnanorc import NanoRC
 
-with NanoRC("COM3") as board:
-    print(board.ping())
+board = NanoRC.Init("COM6")
+
+print(board.ping())
+board.pin_mode(13, "OUTPUT")
+board.digital_write(13, True)
+print(board.digital_read(13))
+board.digital_write(13, False)
+
+board.close()
+```
+
+`NanoRC.Init()` defaults to `COM6`, so this is also valid:
+
+```python
+board = NanoRC.Init()
+```
+
+Always call `board.close()` when the program is finished. Close Arduino Serial
+Monitor before opening the connection from Python.
+
+## Alternative: `with` Block
+
+The context-manager form closes the connection automatically:
+
+```python
+from pythonnanorc import NanoRC
+
+with NanoRC("COM6") as board:
     board.pin_mode(13, "OUTPUT")
     board.digital_write(13, True)
-    print(board.digital_read(13))
-    board.digital_write(13, False)
 ```
 
 ## All Serial Commands
@@ -298,7 +322,32 @@ SCRIPT CLEAR
 The Python library provides the simpler `run()` method:
 
 ```python
-with NanoRC("COM3") as board:
+board = NanoRC.Init()
+board.run([
+    "PINMODE 13 OUTPUT",
+    "DIGITALWRITE 13 ON",
+    "WAIT 500",
+    "DIGITALWRITE 13 OFF",
+])
+board.close()
+```
+
+For separate upload and execution:
+
+```python
+board = NanoRC.Init()
+board.upload_script([
+    "PINMODE 13 OUTPUT",
+    "DIGITALWRITE 13 ON",
+])
+responses = board.run_script()
+board.close()
+```
+
+The equivalent context-manager form is:
+
+```python
+with NanoRC("COM6") as board:
     board.run([
         "PINMODE 13 OUTPUT",
         "DIGITALWRITE 13 ON",
@@ -307,24 +356,23 @@ with NanoRC("COM3") as board:
     ])
 ```
 
-For separate upload and execution, use:
-
-```python
-with NanoRC("COM3") as board:
-    board.upload_script([
-        "PINMODE 13 OUTPUT",
-        "DIGITALWRITE 13 ON",
-    ])
-    responses = board.run_script()
-```
-
 ## Raw Commands and Responses
 
 Use `send()` when a new command has been added to the Arduino sketch but does
 not yet have a convenience method in the Python library:
 
 ```python
-with NanoRC("COM3") as board:
+board = NanoRC.Init()
+response = board.send("PING")
+print(response.status)   # OK
+print(response.message)  # PONG
+board.close()
+```
+
+The equivalent context-manager form is:
+
+```python
+with NanoRC("COM6") as board:
     response = board.send("PING")
     print(response.status)   # OK
     print(response.message)  # PONG
@@ -339,7 +387,7 @@ The default baud rate is `115200` and the default response timeout is two
 seconds. Both can be changed:
 
 ```python
-board = NanoRC("COM3", baudrate=115200, timeout=5.0)
+board = NanoRC("COM6", baudrate=115200, timeout=5.0)
 try:
     board.open()
     print(board.info())

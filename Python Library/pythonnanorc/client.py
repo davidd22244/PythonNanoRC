@@ -68,6 +68,23 @@ class NanoRC:
         self._connection = connection
         self._owns_connection = connection is None
 
+    @classmethod
+    def Init(
+        cls,
+        port: str = "COM6",
+        baudrate: int = 115200,
+        timeout: float = 2.0,
+    ) -> "NanoRC":
+        """Open a board for scripts that do not use a ``with`` block.
+
+        Example::
+
+            board = NanoRC.Init("COM6")
+            board.digital_write(13, True)
+            board.close()
+        """
+        return cls(port=port, baudrate=baudrate, timeout=timeout).open()
+
     @property
     def is_open(self) -> bool:
         """Whether the underlying serial connection is open."""

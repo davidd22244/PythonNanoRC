@@ -49,7 +49,7 @@ class ArduinoResponse:
 
 
 class NanoRC:
-    """Control an Arduino running the PythonNanoRC ``Code.ino`` sketch.
+    """Control an Arduino running the PythonNanoRC ``Arduino Code.ino`` sketch.
 
     The class can open its own pyserial connection, or receive an already-open
     serial-compatible object for testing and advanced integrations.
@@ -67,6 +67,23 @@ class NanoRC:
         self.timeout = timeout
         self._connection = connection
         self._owns_connection = connection is None
+
+    @classmethod
+    def Init(
+        cls,
+        port: str = "COM6",
+        baudrate: int = 115200,
+        timeout: float = 2.0,
+    ) -> "NanoRC":
+        """Open a board for scripts that do not use a ``with`` block.
+
+        Example::
+
+            board = NanoRC.Init("COM6")
+            board.digital_write(13, True)
+            board.close()
+        """
+        return cls(port=port, baudrate=baudrate, timeout=timeout).open()
 
     @property
     def is_open(self) -> bool:

@@ -1,4 +1,0 @@
-{
-    "arduino.port": "COM3",
-    "arduino.board": "arduino:avr:nano:cpu=atmega328old"
-}

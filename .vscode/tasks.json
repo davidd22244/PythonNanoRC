@@ -1,0 +1,24 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Arduino: Upload to Nano",
+            "type": "shell",
+            "command": "C:\\Users\\david\\AppData\\Local\\Programs\\Arduino IDE\\resources\\app\\lib\\backend\\resources\\arduino-cli.exe",
+            "args": [
+                "compile",
+                "--upload",
+                "--fqbn",
+                "arduino:avr:nano",
+                "--port",
+                "COM6",
+                "${workspaceFolder}/Arduino Code"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}

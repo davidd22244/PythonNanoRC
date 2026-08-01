@@ -49,7 +49,7 @@ class ArduinoResponse:
 
 
 class NanoRC:
-    """Control an Arduino running the PythonNanoRC ``Code.ino`` sketch.
+    """Control an Arduino running the PythonNanoRC ``Arduino Code.ino`` sketch.
 
     The class can open its own pyserial connection, or receive an already-open
     serial-compatible object for testing and advanced integrations.

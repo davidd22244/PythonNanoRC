@@ -1,6 +1,6 @@
 # PythonNanoRC
 
-Python client library for the Arduino sketch in `Arduino Code/Code.ino`.
+Python client library for the Arduino sketch in `Arduino Code/Arduino Code.ino`.
 The Arduino communicates over USB serial at **115200 baud**.
 
 ## Install
@@ -17,7 +17,7 @@ The dependency can also be installed directly:
 pip install pyserial
 ```
 
-Upload `Arduino Code/Code.ino` to the board first. Replace `COM3` in the
+Upload `Arduino Code/Arduino Code.ino` to the board first. Replace `COM3` in the
 examples with the port shown by Arduino IDE under **Tools > Port**.
 
 ## Basic Python Usage
@@ -260,7 +260,7 @@ board.wait(500)
 ## Scripts
 
 Scripts store several commands on the Arduino and can be run repeatedly.
-The Arduino can store up to **32 lines**, with each line limited to **95
+The Nano build can store up to **16 lines**, with each line limited to **63
 characters**.
 
 ### SCRIPT BEGIN

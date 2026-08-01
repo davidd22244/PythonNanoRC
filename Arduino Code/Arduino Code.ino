@@ -25,9 +25,9 @@
  */
 
 const unsigned long SERIAL_BAUD = 115200;
-const size_t INPUT_BUFFER_SIZE = 96;
-const size_t SCRIPT_LINE_SIZE = 96;
-const size_t MAX_SCRIPT_LINES = 32;
+const size_t INPUT_BUFFER_SIZE = 64;
+const size_t SCRIPT_LINE_SIZE = 64;
+const size_t MAX_SCRIPT_LINES = 16;
 
 char inputBuffer[INPUT_BUFFER_SIZE];
 size_t inputLength = 0;

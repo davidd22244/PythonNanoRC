@@ -1,11 +1,4 @@
 {
     "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Upload to Arduino Nano",
-            "type": "node",
-            "request": "launch",
-            "preLaunchTask": "Arduino: Upload to Nano"
-        }
-    ]
+    "configurations": []
 }

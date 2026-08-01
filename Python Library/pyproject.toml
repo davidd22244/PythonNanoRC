@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pythonnanorc"
+version = "1.0.0"
+description = "Python client for the PythonNanoRC Arduino serial protocol"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["pyserial>=3.5"]
+
+[tool.setuptools.packages.find]
+where = ["."]

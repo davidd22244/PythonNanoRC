@@ -1,7 +1,7 @@
-#include <Arduino.h>
-#include <stdlib.h>
-#include <string.h>
-#include <strings.h>
+ #include <Arduino.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <string.h>
 
 /*
  * PythonNanoRC serial control protocol
